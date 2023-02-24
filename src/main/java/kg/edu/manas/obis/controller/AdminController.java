@@ -2,8 +2,10 @@ package kg.edu.manas.obis.controller;
 
 import kg.edu.manas.obis.models.Lessons;
 import kg.edu.manas.obis.models.Student;
+import kg.edu.manas.obis.models.Teacher;
 import kg.edu.manas.obis.services.LessonService;
 import kg.edu.manas.obis.services.StudentsService;
+import kg.edu.manas.obis.services.TeacherService;
 import kg.edu.manas.obis.utils.JdbcRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ public class AdminController {
     private final StudentsService studentsService;
     private final JdbcRepository jdbcRepository;
     private final LessonService lessonService;
+    private final TeacherService teacherService;
     @GetMapping()
     public String mainAdmin(Model model){
         model.addAttribute("students",studentsService.allStudents());
@@ -67,6 +70,7 @@ public class AdminController {
     public String addLesson(@PathVariable("id") int id, Model model){
         model.addAttribute("lesson", new Lessons());
         model.addAttribute("student",studentsService.getStudentById(id));
+        model.addAttribute("teachers",teacherService.findAll());
         return "admin/lessonAdd";
     }
     @PostMapping("/lesson/{id}/add")
@@ -107,5 +111,21 @@ public class AdminController {
         System.out.println(allStudents);
         model.addAttribute("students",allStudents);
         return "admin/search";
+    }
+
+    @GetMapping("/teachers")
+    public String teachers(Model model){
+        model.addAttribute("teachers",teacherService.findAll());
+        return "admin/teachers/teachers";
+    }
+    @GetMapping("/teacher/add")
+    public String addTeacher(Model model){
+        model.addAttribute("teachers",new Teacher());
+        return "admin/teachers/add";
+    }
+    @PostMapping("/teacher/add")
+    public String addedTeacher(@ModelAttribute("teachers") Teacher teacher){
+        teacherService.save(teacher);
+        return "redirect:/admin/teachers";
     }
 }

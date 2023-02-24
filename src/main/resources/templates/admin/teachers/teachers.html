@@ -74,8 +74,8 @@
 </nav>
 <div class="container">
     <div class="teachers">
-        <form class="d-flex" th:method="GET" th:action="@{/admin/teachers}" role="search">
-            <button class="btn btn-outline-success" type="submit">Учители</button>
+        <form class="d-flex" th:action="@{/admin}" role="search">
+            <button class="btn btn-outline-success" type="submit">Студенты</button>
         </form>
     </div>
     <table class="table table-bordered table-striped caption-top">
@@ -85,25 +85,24 @@
             <th scope="col">Id</th>
             <th scope="col">Имя</th>
             <th scope="col">Фамилия</th>
-            <th scope="col">Студ. Номер</th>
+<!--            <th scope="col">Урок</th>-->
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="student:${students}">
-            <th scope="row" th:text="${student.getId()}">id</th>
+        <tr th:each="teacher:${teachers}">
+            <th scope="row" th:text="${teacher.getId()}">id</th>
             <td>
-                <a th:href="@{/admin/student/{id}(id=${student.getId()})}" th:text="${student.getName()}">
+                <a th:href="@{/admin/teacher/{id}(id=${teacher.getId()})}" th:text="${teacher.getName()}">
                 </a>
             </td>
-            <td th:text="${student.getSurname()}">Otto</td>
-            <td th:text="${student.getStudent_number()}">@mdo</td>
+            <td th:text="${teacher.getSurname()}">Otto</td>
+<!--            <td th:text="${teacher.getLessons().getLesson_name()}">@mdo</td>-->
         </tr>
 
         </tbody>
     </table>
-    <a th:href="@{/admin/student/add}" class="btn btn-primary active" aria-current="page">Добавить студента</a>
-    <a th:href="@{/admin/student/listOfLessons}" class="btn btn-primary active" aria-current="page">Yoklama</a>
+    <a th:href="@{/admin/teacher/add}" class="btn btn-primary active" aria-current="page">Добавить Учителя</a>
 
 </div>
 

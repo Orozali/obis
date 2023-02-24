@@ -75,6 +75,22 @@
       <input type="text" class="form-control" th:field="*{email}" id="email">
       <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
     </div>
+<!--    <div class="input-group mb-3 form-group">-->
+<!--      <label for="email">Электронная почта:  </label><br>-->
+<!--      <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Введите электронную почту" aria-label="Recipient's username" aria-describedby="basic-addon2">-->
+<!--      <span class="input-group-text" id="basic-addon2">@example.com</span><br>-->
+<!--      <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>-->
+<!--    </div>-->
+    <div class="form-group">
+      <label for="faculty">Факультет:</label>
+      <input type="text" class="form-control" th:field="*{faculty}" id="faculty">
+      <div th:if="${#fields.hasErrors('faculty')}" th:errors="*{faculty}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="profession">Профессия:</label>
+      <input type="text" class="form-control" th:field="*{profession}" id="profession">
+      <div th:if="${#fields.hasErrors('profession')}" th:errors="*{profession}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
     <div class="form-group">
       <label for="fath_name">Имя отца:</label>
       <input type="text" class="form-control" th:field="*{father_name}" id="fath_name">

@@ -51,6 +51,7 @@ public class StudentsService implements UserDetailsService {
     @Transactional
     public void add(Student student) {
         student.setRole("ROLE_USER");
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentsRepository.save(student);
     }
 

@@ -31,6 +31,11 @@ public class Lessons {
     @JoinColumn(name = "student_id",referencedColumnName = "id")
     private Student student;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    private Teacher teacher;
+
+
     public Lessons(String lesson_name){
         this.lesson_name = lesson_name;
     }

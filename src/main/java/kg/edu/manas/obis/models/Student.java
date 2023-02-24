@@ -52,6 +52,10 @@ public class Student {
     private String nationality;
     @Column(name = "role")
     private String role;
+    @Column(name = "faculty")
+    private String faculty;
+    @Column(name = "profession")
+    private String profession;
 
     @Column(name = "email")
     @NotEmpty(message = "Это полья не должен быть пустым!")

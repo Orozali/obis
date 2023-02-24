@@ -17,8 +17,8 @@ public class JdbcRepository implements JdbcInterface{
 
     @Override
     public void saveWithJDBC(Student student, Lessons lessons) {
-        jdbcTemplate.update("INSERT INTO Lessons (lesson_code,lesson_name,kredi,student_id) VALUES(?,?,?,?)",
-                new Object[] { lessons.getLesson_code(), lessons.getLesson_name(), lessons.getKredi(), student.getId()});
+        jdbcTemplate.update("INSERT INTO Lessons (lesson_code,lesson_name,kredi,student_id,teacher_id) VALUES(?,?,?,?,?)",
+                new Object[] { lessons.getLesson_code(), lessons.getLesson_name(), lessons.getKredi(), student.getId(),lessons.getTeacher().getId()});
     }
     @Override
     public void deleteLessons(Student student,List<Lessons> lessonsList) {
