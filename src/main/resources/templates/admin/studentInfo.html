@@ -10,9 +10,48 @@
             padding-left: 100px;
             padding-top: 50px;
         }
+        li{
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <!--        <a class="navbar-brand" href="#">Navbar</a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <li class="nav-item">
+                <img src="https://upload.wikimedia.org/wikipedia/en/6/6f/Manas_University_logo.png" style="width: 60px; margin-right: 20px">
+            </li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://eders-bahar2023.manas.edu.kg/">E-Ders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://elib.manas.edu.kg/index.php">E-Библиотека</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.manas.edu.kg/ru">Главный сайт</a>
+                </li>
+
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <form th:action="@{/logout}" th:method="POST" class="logout">
+                <button type="submit" class="btn btn-primary btn-sm">Выйти</button>
+            </form>
+        </div>
+    </div>
+</nav>
 <div class="container">
     <table class="table table-bordered table-striped caption-top">
         <caption>Информация о студента</caption>

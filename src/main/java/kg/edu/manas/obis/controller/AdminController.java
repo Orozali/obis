@@ -100,4 +100,9 @@ public class AdminController {
         Student student = lessonService.findStudentByLessonId(id);
         return "redirect:/admin/student/"+student.getId()+"/lessons";
     }
+
+    @PostMapping("/student/search")
+    public String search(Model model,@RequestParam("keyword") String string){
+        return null;
+    }
 }
