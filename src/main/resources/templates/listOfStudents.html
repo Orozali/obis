@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <style>
+    p{
+      font-size: 20px;
+    }
+    button{
+      padding: 3px 10px;
+      font-size: 15px;
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 10px;
+    }
+    button:hover{
+      background-color: mediumblue;
+      color: white;
+      transition: .3s;
+      border-color: mediumblue;
+    }
+    input[type = text]{
+      padding: 5px 15px;
+      border: 1px black solid;
+      border-radius: 10px;
+    }
+    th{
+      padding-left: 10px;
+      padding-right: 10px;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+
+    }
+    td{
+      padding-left: 10px;
+      padding-right: 10px;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+
+  </style>
+</head>
+<body style="font-family: sans-serif">
+<table class="table table-bordered table-sm mt-2">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Стун. Номер</th>
+    <th>Место рождения</th>
+    <th>Ден рождения</th>
+    <th>Имя отца</th>
+    <th>Имя мамы</th>
+    <th>Национальность</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="student : ${students}">
+    <td th:text="${student.getId()}"></td>
+    <td th:text="${student.getName()}"></td>
+    <td th:text="${student.getSurname()}"></td>
+    <td th:text="${student.getStudent_number()}"></td>
+    <td th:text="${student.getPlace_of_birth()}"></td>
+    <td th:text="${student.getBirthdate()}"></td>
+    <td th:text="${student.getFather_name()}"></td>
+    <td th:text="${student.getMother_name()}"></td>
+    <td th:text="${student.getNationality()}"></td>
+    <!--        <td>-->
+    <!--          <a th:href="@{/update/{id}(id=${l.id})}" ><i class="fa fa-edit" ></i></a>-->
+    <!--          <a th:href="@{/delete/{id}(id=${l.id})}" ><i class="fa fa-remove"></i></a>-->
+    <!--        </td>-->
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
+</body>
+</html>

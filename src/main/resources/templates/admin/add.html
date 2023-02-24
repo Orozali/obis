@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <title>Add</title>
+</head>
+<body>
+<div class="container">
+  <form th:method="POST" th:action="@{/admin/student/add}" th:object="${student}">
+    <div class="form-group">
+      <label for="name">Имя:</label>
+      <input type="text" class="form-control" th:field="*{name}" id="name">
+      <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="surname">Фамилия:</label>
+      <input type="text" class="form-control" th:field="*{surname}" id="surname">
+      <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="st_number">Студентический номер:</label>
+      <input type="text" class="form-control" th:field="*{student_number}" id="st_number">
+      <div th:if="${#fields.hasErrors('student_number')}" th:errors="*{student_number}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Пароль:</label>
+      <input type="password" class="form-control" th:field="*{password}" id="pwd">
+      <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="email">Электронная почта:</label>
+      <input type="text" class="form-control" th:field="*{email}" id="email">
+      <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="fath_name">Имя отца:</label>
+      <input type="text" class="form-control" th:field="*{father_name}" id="fath_name">
+      <div th:if="${#fields.hasErrors('father_name')}" th:errors="*{father_name}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="moth_name">Имя мамы:</label>
+      <input type="text" class="form-control" th:field="*{mother_name}" id="moth_name">
+      <div th:if="${#fields.hasErrors('mother_name')}" th:errors="*{mother_name}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="tel_number">Номер телефона:</label>
+      <input type="text" class="form-control" th:field="*{tel_number}" id="tel_number">
+      <div th:if="${#fields.hasErrors('tel_number')}" th:errors="*{tel_number}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="place">Место рождения:</label>
+      <input type="text" class="form-control" th:field="*{place_of_birth}" id="place">
+      <div th:if="${#fields.hasErrors('place_of_birth')}" th:errors="*{place_of_birth}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <div class="form-group">
+      <label for="nation">Националность:</label>
+      <input type="text" class="form-control" th:field="*{nationality}" id="nation">
+      <div th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
+  </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+</html>
