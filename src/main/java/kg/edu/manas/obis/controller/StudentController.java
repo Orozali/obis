@@ -46,10 +46,9 @@ public class StudentController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         StudentServiceDetails studentServiceDetails = (StudentServiceDetails) authentication.getPrincipal();
         model.addAttribute("lessons",studentServiceDetails.getStudent().getLessons());
+        model.addAttribute("student",studentServiceDetails.getStudent());
         model.addAttribute("averageGrade",studentsService.averageGrade(studentServiceDetails.getStudent()));
         model.addAttribute("allKredi",studentsService.allKredi(studentServiceDetails.getStudent()));
-        System.out.println(studentsService.averageGrade(studentServiceDetails.getStudent()));
-        System.out.println(studentsService.allKredi(studentServiceDetails.getStudent()));
         return "student/transcript";
     }
 
