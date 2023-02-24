@@ -15,5 +15,6 @@ public interface StudentsRepository extends JpaRepository<Student, Integer> {
     Optional<Student> findStudentByStudent_number(String st_number);
     @Query("select t from Student t where t.role = ?1")
     List<Student> findStudentsByRole(String role,Sort sort);
+    List<Student> findAllByNameContaining(String s);
 
 }

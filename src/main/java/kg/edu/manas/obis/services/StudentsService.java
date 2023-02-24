@@ -88,4 +88,8 @@ public class StudentsService implements UserDetailsService {
         }
         return allKredi;
     }
+
+    public List<Student> findByKeyword(String string) {
+        return studentsRepository.findAllByNameContaining(string);
+    }
 }

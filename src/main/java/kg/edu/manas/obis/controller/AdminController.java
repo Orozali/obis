@@ -103,6 +103,9 @@ public class AdminController {
 
     @PostMapping("/student/search")
     public String search(Model model,@RequestParam("keyword") String string){
-        return null;
+        List<Student> allStudents = studentsService.findByKeyword(string);
+        System.out.println(allStudents);
+        model.addAttribute("students",allStudents);
+        return "admin/search";
     }
 }
