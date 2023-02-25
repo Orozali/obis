@@ -1,6 +1,7 @@
 package kg.edu.manas.obis.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,10 @@ public class Teacher {
     @Column(name = "id")
     private int id;
     @Column(name = "name")
+    @NotEmpty(message = "Это полья не должен быть пустым!")
     private String name;
     @Column(name = "surname")
+    @NotEmpty(message = "Это полья не должен быть пустым!")
     private String surname;
 
     @OneToMany(mappedBy = "teacher")

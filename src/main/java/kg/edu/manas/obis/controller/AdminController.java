@@ -1,5 +1,8 @@
 package kg.edu.manas.obis.controller;
 
+import jakarta.validation.Valid;
+import kg.edu.manas.obis.dto.LessonDTO;
+import kg.edu.manas.obis.dto.LessonMark;
 import kg.edu.manas.obis.models.Lessons;
 import kg.edu.manas.obis.models.Student;
 import kg.edu.manas.obis.models.Teacher;
@@ -8,8 +11,10 @@ import kg.edu.manas.obis.services.StudentsService;
 import kg.edu.manas.obis.services.TeacherService;
 import kg.edu.manas.obis.utils.JdbcRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -21,6 +26,7 @@ import java.util.List;
 public class AdminController {
     private final StudentsService studentsService;
     private final JdbcRepository jdbcRepository;
+    private final ModelMapper modelMapper;
     private final LessonService lessonService;
     private final TeacherService teacherService;
     @GetMapping()
@@ -45,7 +51,11 @@ public class AdminController {
 //        return "admin/attendance";
 //    }
     @PostMapping("/student/{id}")
-    public String updated(@PathVariable("id") int id, @ModelAttribute("student") Student student){
+    public String updated(@PathVariable("id") int id, @ModelAttribute("student") @Valid Student student
+                          , BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "admin/update";
+        }
         studentsService.update(id,student);
         return "redirect:/admin/student/"+id;
     }
@@ -55,7 +65,11 @@ public class AdminController {
         return "admin/add";
     }
     @PostMapping("/student/add")
-    public String added(@ModelAttribute("student") Student student){
+    public String added(@ModelAttribute("student") @Valid Student student
+                        ,BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "admin/add";
+        }
         studentsService.add(student);
         return "redirect:/admin";
     }
@@ -68,13 +82,18 @@ public class AdminController {
     }
     @GetMapping("/lesson/{id}/add")
     public String addLesson(@PathVariable("id") int id, Model model){
-        model.addAttribute("lesson", new Lessons());
+        model.addAttribute("lesson", new LessonDTO());
         model.addAttribute("student",studentsService.getStudentById(id));
         model.addAttribute("teachers",teacherService.findAll());
         return "admin/lessonAdd";
     }
     @PostMapping("/lesson/{id}/add")
-    public String addedLesson(@PathVariable("id") int id,@ModelAttribute("lesson") Lessons lessons){
+    public String addedLesson(@PathVariable("id") int id,@ModelAttribute("lesson") @Valid LessonDTO lessonDTO
+                              ,BindingResult bindingResult){
+        Lessons lessons = convert(lessonDTO);
+        if(bindingResult.hasErrors()){
+            return "admin/lessonAdd";
+        }
         Student student = studentsService.getStudentById(id);
         jdbcRepository.saveWithJDBC(student,lessons);
         return "redirect:/admin/student/"+id+"/lessons";
@@ -94,7 +113,10 @@ public class AdminController {
 //    }
     @PostMapping("/lesson/{id}/mark")
     public String mark(@PathVariable("id") int id,@ModelAttribute("markLesson") Lessons lessons){
-        lessonService.addGrade(id,lessons);
+//        if(bindingResult.hasErrors()){
+//            return "admin/lessonsOfStudent";
+//        }
+            lessonService.addGrade(id,lessons);
         Student student = lessonService.findStudentByLessonId(id);
         return "redirect:/admin/student/"+student.getId()+"/lessons";
     }
@@ -124,8 +146,25 @@ public class AdminController {
         return "admin/teachers/add";
     }
     @PostMapping("/teacher/add")
-    public String addedTeacher(@ModelAttribute("teachers") Teacher teacher){
+    public String addedTeacher(@ModelAttribute("teachers") @Valid Teacher teacher
+                               ,BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "admin/teachers/add";
+        }
         teacherService.save(teacher);
         return "redirect:/admin/teachers";
     }
+
+
+    public Lessons convert(LessonDTO lessonDTO){
+        return modelMapper.map(lessonDTO,Lessons.class);
+    }
+    public Lessons convert(LessonMark lessonMark){
+        return modelMapper.map(lessonMark,Lessons.class);
+    }
+
+//    @ExceptionHandler
+//    public String numberException(NumberFormatException exception){
+//
+//    }
 }

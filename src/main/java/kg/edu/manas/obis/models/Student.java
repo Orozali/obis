@@ -3,6 +3,7 @@ package kg.edu.manas.obis.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,7 @@ public class Student {
     private String mother_name;
     @Column(name = "password")
     @NotEmpty(message = "Это полья не должен быть пустым!")
+    @Size(min = 6, max = 16, message = "Пароль должен быть между 6 и 16")
     private String password;
     @Column(name = "place_of_birth")
     @NotEmpty(message = "Это полья не должен быть пустым!")
@@ -53,8 +55,10 @@ public class Student {
     @Column(name = "role")
     private String role;
     @Column(name = "faculty")
+    @NotEmpty(message = "Это полья не должен быть пустым!")
     private String faculty;
     @Column(name = "profession")
+    @NotEmpty(message = "Это полья не должен быть пустым!")
     private String profession;
 
     @Column(name = "email")

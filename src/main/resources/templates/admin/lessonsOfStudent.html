@@ -98,6 +98,7 @@
               </div>
 
               <button type="submit" class="btn btn-primary btn-sm padd">Оценить</button>
+              <div th:if="${#fields.hasErrors('grades')}" th:errors="*{grades}" style="color: red; font-size: smaller; font-style: italic">Name error</div>
             </div>
 
           </form>
@@ -111,6 +112,7 @@
                   <input type="text" id="form3Example5" th:field="*{grades}" class="form-control form-control-sm input"
                          placeholder="Изменить" />
                 </div>
+                <div th:if="${#fields.hasErrors('grades')}" th:errors="*{grades}" style="color: red; font-size: smaller; font-style: italic">Name error</div><br>
 
                 <button type="submit" class="btn btn-primary btn-sm padd">Изменить</button>
 
@@ -130,7 +132,7 @@
     </tbody>
   </table>
       <a th:href="@{/admin/lesson/{id}/add(id=${student.getId()})}" class="btn btn-primary active" aria-current="page">Добавить урока</a>
-      <a th:href="@{/admin/lesson/{id}/delete(id=${student.getId()})}" class="btn btn-primary active" aria-current="page">Удалить урока</a>
+<!--      <a th:href="@{/admin/lesson/{id}/delete(id=${student.getId()})}" class="btn btn-primary active" aria-current="page">Удалить урока</a>-->
 
 </div>
 
