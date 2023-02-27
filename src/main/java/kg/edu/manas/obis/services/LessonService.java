@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -52,6 +52,18 @@ public class LessonService{
     public void clearGrade(int id) {
         Optional<Lessons> lessons = lessonRepository.findById(id);
         lessons.ifPresent(value -> value.setGrades(null));
+    }
+
+    public List<Lessons> findLessonsByTeacherId(int id) {
+        return lessonRepository.findAllByTeacherId(id);
+    }
+    public Set<Student> getStudentsByLessons(List<Lessons> lessons) {
+        Set<Student> students = new HashSet<>();
+        for(Lessons lesson: lessons){
+            List<Student> studentList = lessonRepository.findStudentByTeacherId(lesson.getTeacher().getId());
+            students.addAll(studentList);
+        }
+        return students;
     }
 
 //    @Override

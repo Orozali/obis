@@ -21,4 +21,8 @@ public class TeacherService {
     public void save(Teacher teacher) {
         teacherRepository.save(teacher);
     }
+
+    public Teacher findById(int id) {
+        return teacherRepository.findById(id).orElse(null);
+    }
 }

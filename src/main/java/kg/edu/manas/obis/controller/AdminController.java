@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -154,6 +155,20 @@ public class AdminController {
         teacherService.save(teacher);
         return "redirect:/admin/teachers";
     }
+
+    @GetMapping("/teacher/{id}")
+    public String teacherInfo(@PathVariable("id") int id,Model model){
+        Teacher teacher = teacherService.findById(id);
+        List<Lessons> lessons = lessonService.findLessonsByTeacherId(id);
+        Set<Student> students = lessonService.getStudentsByLessons(lessons);
+        model.addAttribute("students",students);
+        return "admin/teachers/teacherInfo";
+    }
+
+
+
+
+
 
 
     public Lessons convert(LessonDTO lessonDTO){

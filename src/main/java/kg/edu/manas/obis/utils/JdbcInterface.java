@@ -11,5 +11,5 @@ public interface JdbcInterface {
 
     void deleteLessons(Student student1, List<Lessons> lessonsList);
 
-//    void deleteLessons(List<Lessons> lessonsList);
+//    List<Lessons> findLessonsByTeacherId(int id);
 }
