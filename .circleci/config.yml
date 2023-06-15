@@ -10,7 +10,7 @@ jobs:
             # Build your Docker image
             docker build -t orozali/docker-tutorial:latest .
             # Authenticate with DockerHub
-            echo “$DOCKERHUB_PASSWORD” | docker login --username orozali --password-stdin
+            echo "$DOCKERHUB_PASSWORD" | docker login --username orozali --password-stdin
             # Push the Docker image to DockerHub
             docker push orozali/docker-tutorial:latest
       - run:
@@ -22,7 +22,7 @@ jobs:
           name: Pull Image and Deploy
           command: |
             # SSH into the remote instance
-              ssh -o “StrictHostKeyChecking=no” -i ./privateKey.pem ubuntu@$HOST
+            ssh -o "StrictHostKeyChecking=no" -i ./privateKey.pem ubuntu@$HOST
             # Pull the latest image from DockerHub
             docker pull orozali/docker-tutorial:latest
             # Run the image on the remote instance
