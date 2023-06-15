@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -96,4 +93,13 @@ public class StudentsService implements UserDetailsService {
     }
 
 
+    public Map<String, String> addStudent(Student student) {
+        studentsRepository.save(student);
+        Map<String ,String> map = new HashMap<>();
+        map.put("message","Student successfully saved");
+        return map;
+    }
+    public List<Student> getAllStud(){
+        return studentsRepository.findAll();
+    }
 }

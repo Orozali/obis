@@ -44,7 +44,7 @@ public class Student {
     private String mother_name;
     @Column(name = "password")
     @NotEmpty(message = "Это полья не должен быть пустым!")
-    @Size(min = 6, max = 16, message = "Пароль должен быть между 6 и 16")
+    @Size(min = 6, message = "Пароль должен быть между 6 и 16")
     private String password;
     @Column(name = "place_of_birth")
     @NotEmpty(message = "Это полья не должен быть пустым!")

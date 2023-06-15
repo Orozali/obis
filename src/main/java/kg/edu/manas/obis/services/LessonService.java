@@ -19,29 +19,27 @@ public class LessonService{
     private final LessonRepository lessonRepository;
 
     @Transactional
-    public void addGrade(int id, Lessons lessons) throws NumberFormatException{
+    public void addGrade(int id, Lessons lessons){
         Optional<Lessons> lessons1 = lessonRepository.findById(id);
         if(lessons1.isPresent()){
                 int grade = Integer.parseInt(lessons.getGrades());
                 if(grade<50){
                     lessons1.get().setGrades("FF");
-                }else if(grade>=50 && grade<=60){
+                }else if(grade<=60){
                     lessons1.get().setGrades("DD");
-                }else if(grade>60 && grade<=70){
+                }else if(grade<=70){
                     lessons1.get().setGrades("DC");
-                }else if(grade>70 && grade<=75){
+                }else if(grade<=75){
                     lessons1.get().setGrades("CC");
-                }else if(grade>75 && grade<=80){
+                }else if(grade<=80){
                     lessons1.get().setGrades("CB");
-                }else if(grade>80 && grade<=85){
+                }else if(grade<=85){
                     lessons1.get().setGrades("BB");
-                }else if(grade>85 && grade<=90){
+                }else if(grade<=90){
                     lessons1.get().setGrades("BA");
-                }else if(grade>90 && grade<=100){
+                }else if(grade<=100){
                     lessons1.get().setGrades("AA");
                 }
-
-
         }
     }
 
